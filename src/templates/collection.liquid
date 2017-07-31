@@ -1,0 +1,98 @@
+<div id="page-header-wrap" data-animate-in-effect="none" data-midnight="light" class="" style="height: 400px;">
+    <div class=" " data-animate-in-effect="none" id="page-header-bg" data-midnight="light" data-text-effect="none"
+         data-bg-pos="center" data-alignment="center" data-alignment-v="middle" data-parallax="0" data-height="400"
+         style="background-color: #000;  height: 400px;">
+        <div class="page-header-bg-image"
+             style="background-image: url({{ 'header-merchandise.jpg' | asset_url }});"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col span_6" style="width: 49%;">
+                    <div class="inner-wrap" style="text-align: left;">
+                        <h1 style="text-align: left; color: white !important; font-size: 48px;">LYFEFUEL
+                            MERCHANDISE</h1>
+                        <span class="subheader">REMIND YOURSELF AS YOU INTO YOUR KITCHEN WITH LYFEUEL BOTTLES, MUGS, AND MERCHANDISE!</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container-wrap">
+    <div class="container main-content">
+        <div class="row">
+            <div class="col span_12">
+                <div class="clearfix breadcrumb-collection">
+                    <div class="eight columns breadcrumb_text" itemscope
+                         itemtype="http://schema.org/BreadcrumbList"
+                         style="font-size: 18px; text-transform: uppercase; margin-bottom: 40px; font-weight: 600;">
+                        <span itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem"><a
+                                    href="{{ shop.url }}" title="{{ shop.name | escape }}" itemprop="item"
+                                    class="breadcrumb_link"><span
+                                        itemprop="name">{{ 'general.breadcrumbs.home' | t }}</span></a></span>
+                        <span class="breadcrumb-divider">/</span>
+                        <span itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem"><a
+                                    href="/collections/{% if collection.handle != blank %}{{ collection.handle }}{% else %}all{% endif %}"
+                                    title="{{ collection.title | escape }}" itemprop="item" class="breadcrumb_link"><span
+                                        itemprop="name">{{ collection.title }}</span></a></span>
+                        {% if current_tags %}
+                            {% for tag in current_tags %}
+                                <span class="breadcrumb-divider">/</span>
+                                <span itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem"><a
+                                            href="/collections/{% if collection.handle != blank %}{{ collection.handle }}{% else %}all{% endif %}/{{ tag | handleize }}"
+                                            title="{{ tag | escape }}" itemprop="item"><span
+                                                itemprop="name">{{ tag }}</span></a></span>
+                            {% endfor %}
+                        {% endif %}
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col span_2">
+                <h6 style="font-size: 18px;">CATEGORY</h6>
+                {% for collection in collections %}
+                    <p style="padding-bottom: 10px;"><a href="{{ collection.url }}"
+                                                        style="font-size: 18px; color: black;">{{ collection.title }}</a>
+                    </p>
+                {% endfor %}
+            </div>
+            <div class="col span_10">
+                <ul class="products" style="border-left: 1px solid">
+                    {% for product in collection.products %}
+                        <li class="text_on_hover product type-product status-publish has-post-thumbnail product_cat-{{ product.collections.first | handle }} {% cycle 'first','','', 'last' %} instock taxable shipping-taxable purchasable product-type-simple"
+                            style="width: 32%;">
+                            <a href="{{ product.url }}" class="woocommerce-LoopProduct-link">
+                                <div class="product-wrap">
+                                    <img src="{{ product.featured_image | img_url:'grande' }}"
+                                         class="attachment-shop_catalog size-shop_catalog wp-post-image"
+                                         alt="{{ product.title }}" title="{{ product.title }}"
+                                         style="width: inherit; display: inline-block;"/>
+                                    <div class="bg-overlay"></div>
+                                    <a href="{{ product.url }}" class="link-overlay"></a>
+                                    <div class="text-on-hover-wrap">
+<span class="price">
+  {% if product.price_varies %}
+      <span class="woocommerce-Price-amount amount">{{ product.price_min | money }}</span>
+  -
+  <span class="woocommerce-Price-amount amount">{{ product.price_max | money }}</span>
+  {% else %}
+      <span class="woocommerce-Price-amount amount">{{ product.price | money }}</span>
+  {% endif %}
+</span>
+                                        <div class="categories"><a href="{{ product.url }}"
+                                                                   rel="tag">{{ product.collections.first.title }}</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <a href="{{ product.url }}"><h2
+                                            class="woocommerce-loop-product__title">{{ product.title }}</h2></a>
+                                <a rel="nofollow" data-title="{{ product.title }}" data-quantity="1"
+                                   class="button product_type_simple add_to_cart_button ajax_add_to_cart add_to_cart_button"
+                                   data-id="{{ product.selected_or_first_available_variant.id }}">Add to cart</a>
+                            </a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,41 @@
+{% if section.settings.toggle %}
+<div class="page-featured-img">
+  <div class="img-container">
+    <img src="{{ section.settings.image | img_url: '884x' }}" alt="{{ section.settings.combobox_title }}" />
+  </div>
+</div>
+{% endif %}
+
+{% schema %}
+
+{
+  "name": "Page Featured Image",
+  "class": "page-featured-img",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "toggle",
+      "label": "Page has featured image?"
+    },
+    {
+      "type": "text",
+      "id": "feat_img_alt",
+      "label": "Image alt text",
+      "default": "Something about the image here..."
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Upload featured image",
+      "info":"At least 884px wide"
+    }
+  ],
+  "presets": [{
+    "name": "Page Featured Image",
+    "category": "Image",
+    "settings": {
+    }
+  }]
+}
+
+{% endschema %}

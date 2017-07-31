@@ -1,0 +1,157 @@
+<div class="container-wrap  ">
+  <div class="container main-content">
+    <div class="row">
+      <div id="post-area" class="col span_9">
+        <article class="regular post type-post status-publish format-standard has-post-thumbnail hentry">
+          <div class="inner-wrap animated">
+            <div class="post-content">
+              <div class="content-inner">
+                <div class="title-wrapper">
+                  <h1 class="entry-title">{{article.title}}</h1>
+                  <div id="single-below-header">
+                    <span class="meta-author vcard author"><span class="fn">By {{article.author}}</span></span> <span class="meta-date date updated">{{article.created_at | date:'%b %d, %Y'}}</span>
+                  </div>
+                </div>
+                <span class="post-featured-img"><img src="{{ article.image.src | img_url: 'original' }}" class="attachment-full size-full wp-post-image" alt="" title=""/></span>
+                <div id="fws_592e69b4098c5" data-midnight="dark" data-bg-mobile-hidden="" class="wpb_row vc_row-fluid vc_row standard_section   " style="padding-top: 0px; padding-bottom: 0px; "><div class="row-bg-wrap"> <div class="row-bg    " style="" data-color_overlay="" data-color_overlay_2="" data-gradient_direction="" data-overlay_strength="0.3" data-enable_gradient="false"></div> </div><div class="col span_12 dark left">
+                  <div class="vc_col-sm-12 wpb_column column_container vc_column_container col no-extra-padding" data-bg-cover="" data-padding-pos="all" data-has-bg-color="false" data-bg-color="" data-bg-opacity="1" data-hover-bg="" data-hover-bg-opacity="1" data-animation="" data-delay="0">
+                    <div class="vc_column-inner">
+                      <div class="wpb_wrapper">
+                        <div class="wpb_text_column wpb_content_element ">
+                          <div class="wpb_wrapper">
+                            {{article.content}}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div><!--/content-inner-->
+          </div><!--/post-content-->
+        </div><!--/inner-wrap-->
+      </article><!--/article-->
+    </div><!--/span_9-->
+    <div id="sidebar" class="col span_3 col_last">
+      {% section 'ambassador-combobox' %}
+      {% section 'ambassador-combobox2' %}
+    </div><!--/sidebar-->
+</div><!--/row-->
+<!--ascend only author/comment positioning-->
+<div class="row">
+  {% assign current_found = false %}
+  {% for art in blog.articles %}
+  {% if art.title == article.title %}
+  {% assign current_found = true %}
+  {% continue %}
+  {% endif %}
+  {% if current_found == true %}
+  <!-- <div data-post-header-style="default" class="blog_next_prev_buttons wpb_row vc_row-fluid full-width-content standard_section" data-midnight="light">
+    <img src="{{art.image.src | img_url:'original'}}" alt="{{art.title}}" />
+    <div class="col span_12 dark left">
+      <div class="inner">
+        <span><i>Next Post</i></span>
+        <a href="{{art.url}}" rel="prev"><h3>{{art.title}}</h3></a>					</div>
+      </div>
+      <span class="bg-overlay"></span>
+      <span class="full-link"><a href="{{art.url}}" rel="prev">{{art.title}}</a></span>
+    </div> -->
+    {% break %}
+    {% endif %}
+    {% endfor %}
+    {% if article.comments_enabled? %}
+
+    <div class="comments-section" data-author-bio="false">
+
+      <!-- You can start editing here. -->
+      <div class="comment-wrap full-width-section custom-skip">
+
+        <h3 id="comments">{{article.comments_count}} Comments</h3>
+
+        <div class="navigation">
+          <div class="alignleft"></div>
+          <div class="alignright"></div>
+        </div>
+
+        <ul class="comment-list full-width-section custom-skip">
+          {% for comment in article.comments %}
+          <li class="comment odd alt thread-odd thread-alt depth-1 parent" id="comment-1545">
+            <div id="div-comment-1545" class="comment-body">
+              <div class="comment-author vcard">
+                <img alt="" src='https://lyfefuel.com/wp-content/uploads/gravatar/83371d52e324e7c5d8f6d42d5716e794-s60.jpg' class="avatar avatar-60" width="60" height="60" />			<cite class="fn">{{comment.author}}</cite> <span class="says">says:</span>		</div>
+
+                <div class="comment-meta commentmetadata">
+                  {{ comment.created_at | date: "%b %d, %Y" }} at {{ comment.created_at | date: "%l:%M %P" }}</div>
+
+                  <p>{{comment.content}}</p>
+
+
+                </div>
+
+              </li><!-- #comment-## -->
+              {% endfor %}
+            </ul>
+            <div id="respond" class="comment-respond">
+              <h3 id="reply-title" class="comment-reply-title">Leave a Reply <small><a rel="nofollow" id="cancel-comment-reply-link" href="/inspiring-women-wellness/#respond" style="display:none;">Cancel Reply</a></small></h3>
+              <!--
+              wsl_render_auth_widget
+              WordPress Social Login 2.3.3.
+              http://wordpress.org/plugins/wordpress-social-login/
+            -->
+
+            {% form article %}
+            {% if form.posted_successfully? %}
+            {% if blog.moderated? %}
+            <p class="quote align_left">{{ 'blogs.comments.success_moderated' | t }}</p>
+            {% else %}
+            <p class="quote align_left">{{ 'blogs.comments.success' | t }}</p>
+            {% endif %}
+            {% endif %}
+            <div class="row"><div class="col span_12">
+              <textarea id="comment" name="comment[body]" cols="45" rows="8" aria-required="true"></textarea></div></div><div class="row">
+                <div class="col span_4"><label for="author">Name <span class="required">*</span></label> <input id="author" name="comment[author]" type="text" value="" size="30"></div>
+                <div class="col span_4"><label for="email">Email <span class="required">*</span></label>
+                  <input id="email" name="comment[email]" type="email" value="" size="30" required></div>
+                  <div class="col span_4 col_last"><label for="url">Website</label><input id="url" name="comment[website]" type="text" value="" size="30"></div></div>
+                  <p class="form-submit"><input name="submit" type="submit" id="submit" class="submit" value="Submit Comment">
+                  </p>
+                  {% endform %}
+                </div>
+
+              </div>				 </div>
+
+              {% endif %}
+            </div>
+
+
+
+          </div><!--/container-->
+
+        </div><!--/container-wrap-->
+        <div id="newsletter-row" class="container-wrap ambassador-page">
+          <div class="bg-overlay"></div>
+          <div class="container main-content">
+            <div class="row">
+              <div id="email-capture-row" data-midnight="dark" data-bg-mobile-hidden="" class="wpb_row vc_row-fluid vc_row standard_section " style="padding-top: 0px; padding-bottom: 0px; ">
+                <div class="row-bg-wrap">
+                  <div class="row-bg    " style="" data-color_overlay="" data-color_overlay_2="" data-gradient_direction="" data-overlay_strength="0.3" data-enable_gradient="false">
+                  </div>
+                  <div class="col span_12 dark left">
+                    <div class="vc_col-sm-12 wpb_column column_container vc_column_container col no-extra-padding" data-bg-cover="" data-padding-pos="all" data-has-bg-color="false" data-bg-color="" data-bg-opacity="1" data-hover-bg="" data-hover-bg-opacity="1" data-animation="" data-delay="0">
+                      <div class="vc_column-inner">
+                        <div class="wpb_wrapper">
+                          <div class="wpb_text_column wpb_content_element email-list-block">
+                            <div class="wpb_wrapper">
+                              <!-- Newsletter Section -->
+                              {% section 'generic-newsletter' %}
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>

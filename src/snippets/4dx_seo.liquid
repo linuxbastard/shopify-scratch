@@ -1,0 +1,86 @@
+{% if shop.metafields.4dx_seo_bulk.bulk_entire == 1 %}
+	<meta name="robots" content="noindex, nofollow" />
+{% else %}
+	{% if template contains 'page' %}
+		{% if shop.metafields.4dx_seo_bulk.bulk_pages == 1 %}
+			<meta name="robots" content="noindex, nofollow" />
+		{% else %}
+          {% if page.metafields.4dx_seo.no_index == 1 %}
+              <meta name="robots" content="noindex" />
+          {% endif %}
+          
+          {% if page.metafields.4dx_seo.no_follow == 1 %}
+              <meta name="robots" content="nofollow" />
+          {% endif %}
+		{% endif %}
+	{% endif %}
+	
+	
+	{% if template contains 'product' %}
+		{% if shop.metafields.4dx_seo_bulk.bulk_products == 1 %}
+			<meta name="robots" content="noindex, nofollow" />
+		{% else %}
+          {% if product.metafields.4dx_seo.no_index == 1 %}
+              <meta name="robots" content="noindex" />
+          {% endif %}
+          
+          {% if product.metafields.4dx_seo.no_follow == 1 %}
+              <meta name="robots" content="nofollow" />
+          {% endif %}
+		{% endif %}
+	{% endif %}
+	
+	
+	{% if template contains 'article' or template contains 'blog' %}
+		{% if shop.metafields.4dx_seo_bulk.bulk_blog == 1 %}
+			<meta name="robots" content="noindex, nofollow" />
+		{% else %}
+          {% if article.metafields.4dx_seo.no_index == 1 %}
+              <meta name="robots" content="noindex" />
+          {% endif %}
+
+          {% if article.metafields.4dx_seo.no_follow == 1 %}
+              <meta name="robots" content="nofollow" />
+          {% endif %}
+
+          {% if current_tags %}
+            {% if shop.metafields.4dx_seo_tags.tags_blog == 1 %}
+                <meta name="robots" content="noindex" />
+            {% endif %}
+          {% endif %}
+		{% endif %}
+	{% endif %}
+
+
+	{% if template contains 'collection' %}
+		{% if shop.metafields.4dx_seo_bulk.bulk_collections == 1 %}
+			<meta name="robots" content="noindex, nofollow" />
+		{% else %}
+          {% if collection.metafields.4dx_seo.no_index == 1 %}
+              <meta name="robots" content="noindex" />
+          {% endif %}
+
+          {% if collection.metafields.4dx_seo.no_follow == 1 %}
+              <meta name="robots" content="nofollow" />
+          {% endif %}
+
+          {% if current_tags %}
+            {% if shop.metafields.4dx_seo_tags.tags_collections == 1 %}
+                <meta name="robots" content="noindex" />
+            {% endif %}
+          {% endif %}
+
+          {% if collection.current_vendor %}
+            {% if shop.metafields.4dx_seo_bulk.bulk_collection_vendors == 1 %}
+                <meta name="robots" content="noindex" />
+            {% endif %}
+          {% endif %}
+		{% endif %}
+	{% endif %}
+	
+	{% if template contains 'search' %}
+		{% if shop.metafields.4dx_seo_bulk.bulk_search == 1 %}
+			<meta name="robots" content="noindex" />
+		{% endif %}
+	{% endif %}
+{% endif %}

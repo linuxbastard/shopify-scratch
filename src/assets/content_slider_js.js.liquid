@@ -1,0 +1,57 @@
+(function($){
+		jQuery(document).ready(function(){
+			var image_array = new Array();
+			image_array = [
+			{image: '{{ "shutterstock_421223173-1-f9064133cca7f2bff03caa0b894da903-339x339.jpg" | asset_url }}', link_url: '', link_rel: 'prettyPhoto', link_target: '_self', main_link: '', main_link_target: '0', upper_text_label_show: 0, upper_text_label: '', upper_text_label_style: '', lower_text_label_show: 0, lower_text_label: '', lower_text_label_style: ''},
+			{image: '{{ "shutterstock_146693162-4f0454778f6e243812c01affda5088e4-339x339.jpg" | asset_url }}', link_url: '', link_rel: 'prettyPhoto', link_target: '_self', main_link: '', main_link_target: '0', upper_text_label_show: 0, upper_text_label: '', upper_text_label_style: '', lower_text_label_show: 0, lower_text_label: '', lower_text_label_style: ''},
+			{image: '{{ "shutterstock_441716152-7e6539147d8d34b996b3bc3364067d2c-339x339.jpg" | asset_url }}', link_url: '', link_rel: 'prettyPhoto', link_target: '_self', main_link: '', main_link_target: '0', upper_text_label_show: 0, upper_text_label: '', upper_text_label_style: '', lower_text_label_show: 0, lower_text_label: '', lower_text_label_style: ''},
+			{image: '{{ "shutterstock_491659996-0de6fdeb70ab935d090ea60a6cac8ecd-339x339.jpg" | asset_url }}', link_url: '', link_rel: 'prettyPhoto', link_target: '_self', main_link: '', main_link_target: '0', upper_text_label_show: 0, upper_text_label: '', upper_text_label_style: '', lower_text_label_show: 0, lower_text_label: '', lower_text_label_style: ''},
+			{image: '{{ "shutterstock_498462193-2bb029a9f64f362769a62635c7af44e0-339x339.jpg" | asset_url }}', link_url: '', link_rel: 'prettyPhoto', link_target: '_self', main_link: '', main_link_target: '0', upper_text_label_show: 0, upper_text_label: '', upper_text_label_style: '', lower_text_label_show: 0, lower_text_label: '', lower_text_label_style: ''},
+			{image: '{{ "shutterstock_262883432-f9cfab1387860d433f5b1ad4a6ba3d51-339x339.jpg" | asset_url }}', link_url: '', link_rel: 'prettyPhoto', link_target: '_self', main_link: '', main_link_target: '0', upper_text_label_show: 0, upper_text_label: '', upper_text_label_style: '', lower_text_label_show: 0, lower_text_label: '', lower_text_label_style: ''},
+			{image: '{{ "shutterstock_381317458-5a5e396e564306ac58cb602f653d1eaf-339x339.jpg" | asset_url }}', link_url: '', link_rel: 'prettyPhoto', link_target: '_self', main_link: '', main_link_target: '0', upper_text_label_show: 0, upper_text_label: '', upper_text_label_style: '', lower_text_label_show: 0, lower_text_label: '', lower_text_label_style: ''},
+			{image: '{{ "shutterstock_350877998-fd871fe7d4108b8a74600b3d024e3812-339x339.jpg" | asset_url }}', link_url: '', link_rel: 'prettyPhoto', link_target: '_self', main_link: '', main_link_target: '0', upper_text_label_show: 0, upper_text_label: '', upper_text_label_style: '', lower_text_label_show: 0, lower_text_label: '', lower_text_label_style: ''},
+			{image: '{{ "shutterstock_223400878-587955e78ac45a6d40148d5f69a9c370-339x339.jpg" | asset_url }}', link_url: '', link_rel: 'prettyPhoto', link_target: '_self', main_link: '', main_link_target: '0', upper_text_label_show: 0, upper_text_label: '', upper_text_label_style: '', lower_text_label_show: 0, lower_text_label: '', lower_text_label_style: ''},
+			{image: '{{ "shutterstock_421223188-a5660c581df746a290119d766b159164-339x339.jpg" | asset_url }}', link_url: '', link_rel: 'prettyPhoto', link_target: '_self', main_link: '', main_link_target: '0', upper_text_label_show: 0, upper_text_label: '', upper_text_label_style: '', lower_text_label_show: 0, lower_text_label: '', lower_text_label_style: ''},
+			{image: '{{ "shutterstock_176497676-fa294a273577aa3a2600edc86382707b-339x339.jpg" | asset_url }}', link_url: '', link_rel: 'prettyPhoto', link_target: '_self', main_link: '', main_link_target: '0', upper_text_label_show: 0, upper_text_label: '', upper_text_label_style: '', lower_text_label_show: 0, lower_text_label: '', lower_text_label_style: ''},
+			{image: '{{ "shutterstock_421223197-f51ee93ce89fb6f09232a96d3e07d094-339x339.jpg" | asset_url }}', link_url: '', link_rel: 'prettyPhoto', link_target: '_self', main_link: '', main_link_target: '0', upper_text_label_show: 0, upper_text_label: '', upper_text_label_style: '', lower_text_label_show: 0, lower_text_label: '', lower_text_label_style: ''},
+			{image: '{{ "shutterstock_146305412-09701c32754af9adad7975a3548f789d-339x339.jpg" | asset_url }}', link_url: '', link_rel: 'prettyPhoto', link_target: '_self', main_link: '', main_link_target: '0', upper_text_label_show: 0, upper_text_label: '', upper_text_label_style: '', lower_text_label_show: 0, lower_text_label: '', lower_text_label_style: ''},
+			{image: '{{ "shutterstock_261568412-d436135809480a4f4aca18ebdf73e22f-339x339.jpg" | asset_url }}', link_url: '', link_rel: 'prettyPhoto', link_target: '_self', main_link: '', main_link_target: '0', upper_text_label_show: 0, upper_text_label: '', upper_text_label_style: '', lower_text_label_show: 0, lower_text_label: '', lower_text_label_style: ''},
+			{image: '{{ "shutterstock_144990193-443554ea496dc26d452a4fb8c22b17b1-339x339.jpg" | asset_url }}', link_url: '', link_rel: 'prettyPhoto', link_target: '_self', main_link: '', main_link_target: '0', upper_text_label_show: 0, upper_text_label: '', upper_text_label_style: '', lower_text_label_show: 0, lower_text_label: '', lower_text_label_style: ''},
+			{image: '{{ "shutterstock_210799177-110d060dd8d2ce474a003108b08d72f2-338x338.jpg" | asset_url }}', link_url: '', link_rel: 'prettyPhoto', link_target: '_self', main_link: '', main_link_target: '0', upper_text_label_show: 0, upper_text_label: '', upper_text_label_style: '', lower_text_label_show: 0, lower_text_label: '', lower_text_label_style: ''},
+			{image: '{{ "shutterstock_104618273-b08c3b518d475a72012f7226e335bcc7-339x339.jpg" | asset_url }}', link_url: '', link_rel: 'prettyPhoto', link_target: '_self', main_link: '', main_link_target: '0', upper_text_label_show: 0, upper_text_label: '', upper_text_label_style: '', lower_text_label_show: 0, lower_text_label: '', lower_text_label_style: ''},
+			{image: '{{ "shutterstock_462011182-471bd43ce3a1609b3e926e7322707720-339x339.jpg" | asset_url }}', link_url: '', link_rel: 'prettyPhoto', link_target: '_self', main_link: '', main_link_target: '0', upper_text_label_show: 0, upper_text_label: '', upper_text_label_style: '', lower_text_label_show: 0, lower_text_label: '', lower_text_label_style: ''},
+			{image: '{{ "shutterstock_84534796-28c4fdc11b3fceac78954ec837639573-339x339.jpg" | asset_url }}', link_url: '', link_rel: 'prettyPhoto', link_target: '_self', main_link: '', main_link_target: '0', upper_text_label_show: 0, upper_text_label: '', upper_text_label_style: '', lower_text_label_show: 0, lower_text_label: '', lower_text_label_style: ''},
+			{image: '{{ "shutterstock_247273711-64708e5be0e1e2c469bbb5f97bdc03ad-339x339.jpg" | asset_url }}', link_url: '', link_rel: 'prettyPhoto', link_target: '_self', main_link: '', main_link_target: '0', upper_text_label_show: 0, upper_text_label: '', upper_text_label_style: '', lower_text_label_show: 0, lower_text_label: '', lower_text_label_style: ''},
+			{image: '{{ "shutterstock_420520789-1-25d678572ca892ec64181d3183a9f48e-339x339.jpg" | asset_url }}', link_url: '', link_rel: 'prettyPhoto', link_target: '_self', main_link: '', main_link_target: '0', upper_text_label_show: 0, upper_text_label: '', upper_text_label_style: '', lower_text_label_show: 0, lower_text_label: '', lower_text_label_style: ''},
+			{image: '{{ "shutterstock_420520786-b0badf1e3f61ed38021eb57289bc2ba2-339x339.jpg" | asset_url }}', link_url: '', link_rel: 'prettyPhoto', link_target: '_self', main_link: '', main_link_target: '0', upper_text_label_show: 0, upper_text_label: '', upper_text_label_style: '', lower_text_label_show: 0, lower_text_label: '', lower_text_label_style: ''},
+			{image: '{{ "shutterstock_157191113-6531a5be25392d2b083514a1251c18fc-339x339.jpg" | asset_url }}', link_url: '', link_rel: 'prettyPhoto', link_target: '_self', main_link: '', main_link_target: '0', upper_text_label_show: 0, upper_text_label: '', upper_text_label_style: '', lower_text_label_show: 0, lower_text_label: '', lower_text_label_style: ''},
+			{image: '{{ "shutterstock_251855311-9da7dd76b4bd43178803d9e39382e0c2-339x339.jpg" | asset_url }}', link_url: '', link_rel: 'prettyPhoto', link_target: '_self', main_link: '', main_link_target: '0', upper_text_label_show: 0, upper_text_label: '', upper_text_label_style: '', lower_text_label_show: 0, lower_text_label: '', lower_text_label_style: ''},
+			{image: '{{ "shutterstock_324073589-f73ba8f31f0747cf1d9245b11d11135d-339x339.jpg" | asset_url }}', link_url: '', link_rel: 'prettyPhoto', link_target: '_self', main_link: '', main_link_target: '0', upper_text_label_show: 0, upper_text_label: '', upper_text_label_style: '', lower_text_label_show: 0, lower_text_label: '', lower_text_label_style: ''},
+			{image: '{{ "shutterstock_255147085-d38ef6729faa943721ccf2e28b77dd3c-339x339.jpg" | asset_url }}', link_url: '', link_rel: 'prettyPhoto', link_target: '_self', main_link: '', main_link_target: '0', upper_text_label_show: 0, upper_text_label: '', upper_text_label_style: '', lower_text_label_show: 0, lower_text_label: '', lower_text_label_style: ''},
+			{image: '{{ "shutterstock_297502001-eb3b0ba219471b5a0f26a21d39a8b80a-339x339.jpg" | asset_url }}', link_url: '', link_rel: 'prettyPhoto', link_target: '_self', main_link: '', main_link_target: '0', upper_text_label_show: 0, upper_text_label: '', upper_text_label_style: '', lower_text_label_show: 0, lower_text_label: '', lower_text_label_style: ''},
+			{image: '{{ "shutterstock_468331988-7eeba9a4145e6799c355f00b14b0eda9-339x339.jpg" | asset_url }}', link_url: '', link_rel: 'prettyPhoto', link_target: '_self', main_link: '', main_link_target: '0', upper_text_label_show: 0, upper_text_label: '', upper_text_label_style: '', lower_text_label_show: 0, lower_text_label: '', lower_text_label_style: ''}
+			];
+			jQuery('#all_around_slider_1').content_slider({
+				map: image_array,
+				plugin_url: '',
+				max_shown_items: 5,
+				responsive_by_available_space: 1,
+				wrapper_text_max_height: 800,
+				small_border: 0,
+				big_border: 2,
+				border_color: "#5da399",
+				small_pic_width: 100,
+				small_pic_height: 100,
+				child_div_width: 125,
+				child_div_height: 125,
+				big_pic_width: 300,
+				big_pic_height: 300,
+				use_thin_arrows: 1,
+				arrow_color: "#5da399",
+				prettyPhoto_color: "#1ab99b",
+				prettyPhoto_movement: 26,
+				hide_prettyPhoto: 1,
+				enable_mousewheel: 0
+			});
+		});
+	})(jQuery);

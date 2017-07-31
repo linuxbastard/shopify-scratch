@@ -1,0 +1,111 @@
+<div class="container-wrap">
+<div class="container main-content">
+<div class="row">
+<div class="woocommerce">
+<form action="/cart" method="post">
+<div class="row">
+<div class="col span_8">
+<table class="shop_table cart" cellspacing="0">
+<thead>
+<tr>
+<th class="product-remove">&nbsp;</th>
+<th class="product-thumbnail">&nbsp;</th>
+<th class="product-name">Product</th>
+<th class="product-price">Price</th>
+<th class="product-quantity">Quantity</th>
+<th class="product-subtotal">Total</th>
+</tr>
+</thead>
+<tbody>
+{% for item in cart.items %}
+<tr class="cart_item">
+<td class="product-remove">
+<a href="/cart/change?line={{ forloop.index }}&amp;quantity=0" class="remove" title="Remove this item">&times;</a> </td>
+<td class="product-thumbnail">
+<a href="{{item.product.url}}"><img src="{{ item | img_url: '95x95' }}" class="attachment-shop_thumbnail size-shop_thumbnail wp-post-image" alt="" /></a> </td>
+<td class="product-name">
+<a href="{{item.product.url}}">{{item.title}}</a> </td>
+<td class="product-price">
+<span class="woocommerce-Price-amount amount">{{item.price | money}}</span> </td>
+<td class="product-quantity">
+<div class="quantity">
+<input type="number" class="input-text qty text" step="1" min="0" max="690" name="updates[]" value="{{ item.quantity }}" title="Qty" size="4" pattern="[0-9]*" inputmode="numeric"/>
+</div>
+</td>
+<td class="product-subtotal">
+<span class="woocommerce-Price-amount amount">{{ item.line_price | money }}</span> </td>
+</tr>
+{% endfor %}
+</tbody>
+</table>
+
+</div> 
+<div class="col span_4">
+<div class="cart-collaterals">
+<div class="cart_totals ">
+<h2>Cart Totals</h2>
+<table cellspacing="0">
+<tr class="cart-subtotal">
+<th>Subtotal</th>
+<td><span class="woocommerce-Price-amount amount">{{ cart.total_price | money }}</span></td>
+</tr>
+<tr class="order-total">
+<th>Total</th>
+<td><strong><span class="woocommerce-Price-amount amount">{{ cart.total_price | money }}</span></strong> </td>
+</tr>
+</table>
+</div>
+<input type="submit" class="button" name="update" value="Update Cart"/>
+<div class="wc-proceed-to-checkout">
+<a href="/checkout/" class="checkout-button button alt wc-forward">
+Proceed to checkout</a>
+</div>
+<input type="hidden" id="_wpnonce" name="_wpnonce" value="65f457f01f"/><input type="hidden" name="_wp_http_referer" value="/cart/"/>
+</div>
+</div> 
+</div> 
+</form>
+<div class="cross-sells">
+<h2>You may be interested in&hellip;</h2>
+<ul class="products">
+{% assign product_first = 0 %}
+{% for product in collections['all'].products limit: 3 %}
+            {% if product.id == skip_product.id or skip == true %}
+              {% assign product_found = true %}
+            {% else %}
+              {% if forloop.rindex0 == 0 and product_found == false and forloop.length != products.count and template != 'search' %}
+                {% assign skip = true %}
+              {% else %}
+  {% assign product_first = product_first | plus:1 %}
+            		<li class="text_on_hover product type-product status-publish has-post-thumbnail product_cat-{{product.collections.first | handle}} {% if product_first == 1 %}first{% endif %} instock taxable shipping-taxable purchasable product-type-simple">
+                    <a href="{{product.url}}" class="woocommerce-LoopProduct-link">
+                    <div class="product-wrap">
+                    <img src="{{ product.featured_image | img_url:'grande' }}" class="attachment-shop_catalog size-shop_catalog wp-post-image" alt="{{product.title}}" title="{{product.title}}"/>
+                    <div class="bg-overlay"></div>
+                    <a href="{{product.url}}" class="link-overlay"></a>
+                    <div class="text-on-hover-wrap">
+                    <span class="price">
+                      {% if product.price_varies %}
+                      <span class="woocommerce-Price-amount amount">{{ product.price_min | money }}</span>
+                      -
+                      <span class="woocommerce-Price-amount amount">{{ product.price_max | money }}</span>
+                      {% else %}
+                      <span class="woocommerce-Price-amount amount">{{ product.price | money }}</span>
+                      {% endif %}
+                    </span>
+                    <div class="categories"><a href="{{product.url}}" rel="tag">{{product.collections.first.title}}</a></div> </div>
+                    </div>
+                    <a href="{{product.url}}"><h2 class="woocommerce-loop-product__title">{{product.title}}</h2></a>
+                    <a rel="nofollow" data-title="{{product.title}}" data-quantity="1" class="button product_type_simple add_to_cart_button ajax_add_to_cart add_to_cart_button" data-id="{{ product.selected_or_first_available_variant.id }}">Add to cart</a>
+                    </a>
+                    </li>
+              {% endif %}
+            {% endif %}
+            {% endfor %}
+</ul>
+</div>
+</div>
+
+</div> 
+</div> 
+</div> 

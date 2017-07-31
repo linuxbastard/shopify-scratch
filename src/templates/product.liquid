@@ -1,0 +1,215 @@
+<div class="container-wrap">
+    <div class="container main-content">
+        <div class="row">
+            <div itemscope data-project-style="text_on_hover" itemtype="http://schema.org/Product"
+                 data-tab-pos="fullwidth" id="product-2697"
+                 class="post-2697 product type-product status-publish has-post-thumbnail product_cat-meal-replacement first instock taxable shipping-taxable purchasable product-type-simple">
+                <div class='span_5 col single-product-main-image'>
+                    <div class="images">
+                        <div class="iosSlider product-slider">
+                            <div class="slider">
+                                {% for image in product.images %}
+                                    <div class="slide">
+                                        <div class="easyzoom">
+                                            <a href="{{ image.src | img_url:'original' }}">
+                                                <img src="{{ image.src | img_url:'grande' }}"
+                                                     class="attachment-shop_single size-shop_single" alt=""/> </a>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                            <div class="slider_controls">
+                                <div class="nav_wrap">
+                                    <a href="#" class="prev_slide" onclick="return false;"><span
+                                                class="icon-angle-left"></span></a>
+                                    <a href="#" class="next_slide" onclick="return false;"><span
+                                                class="icon-angle-right"></span></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="iosSlider product-thumbs" style="min-height:130px!important">
+                        <div class="slider">
+                            {% for image in product.images %}
+                                <div class="thumb {% if forloop.first %}active{% endif %}" style="height:130px">
+                                    <div class="thumb-inner"><img src="{{ image.src | img_url:'medium' }}"
+                                                                  class="attachment-shop_thumbnail size-shop_thumbnail wp-post-image"
+                                                                  alt=""/></div>
+                                </div>
+                            {% endfor %}
+                            <div class="slider_controls">
+                                <div class="nav_wrap">
+                                    <a href="#" onclick="return false;" class="prev_slide"><span
+                                                class="icon-angle-left"></span></a>
+                                    <a href="#" onclick="return false;" class="next_slide"><span
+                                                class="icon-angle-right"></span></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class='span_7 col col_last single-product-summary'>
+                    <div class="summary entry-summary">
+                        <p><span class="shopify-product-reviews-badge" data-id="{{ product.id }}"></span></p>
+                        <h1 class="product_title entry-title">{{ product.title }}</h1>
+                        {% if product.available %}
+                            <p class="stock in-stock">In stock</p>
+                        {% endif %}
+                        <div class="short-description">{{ product.description | truncatewords: 35 }}</div>
+                        <form class="cart" action="/cart/add" method="post" enctype='multipart/form-data'>
+                            <p class="price"
+                               style="float: left; line-height: 15px !important; margin-right: 20px;"><span
+                                        class="woocommerce-Price-amount amount">{{ product.price | money }}</span></p>
+                            <div class="quantity">
+                                <input type="number" class="input-text qty text" step="1" min="1" max="558"
+                                       name="quantity" value="1" title="Qty" size="4" pattern="[0-9]*"
+                                       inputmode="numeric"/>
+                            </div>
+                            {% assign variant = product.selected_or_first_available_variant %}
+                            <input type="hidden" name="id" value="{{ variant.id }}"/>
+                            <button type="submit" name="add-to-cart" class="single_add_to_cart_button button alt">Add to
+                                cart
+                            </button>
+                        </form>
+                        <p class="first-payment-date">
+                            <small></small>
+                        </p>
+                        <div class="product_meta">
+                            {% if product.sku != blank %}
+                                <span class="sku_wrapper">SKU: <span class="sku">{{ product.sku }}</span></span>
+                            {% endif %}
+                            <span class="posted_in">Category: <a href="{{ product.collections.first.url }}"
+                                                                 rel="tag">{{ product.collections.first.title }}</a></span>
+                        </div>
+                        <div id="single-meta" data-sharing="1">
+                            <ul class="product-sharing">
+                                <li class="meta-share-count"><a href="#"><i
+                                                class="icon-default-style steadysets-icon-share"></i><span
+                                                class="share-count-total">0</span> <span class="plural">Shares</span>
+                                        <span class="singular">Share</span></a>
+                                    <div class="nectar-social">
+                                        <div class="nectar-social woo"><a class='facebook-share nectar-sharing' href='#'
+                                                                          title='Share this'> <i
+                                                        class='icon-facebook'></i> <span class='count'></span></a><a
+                                                    class='twitter-share nectar-sharing' href='#' title='Tweet this'> <i
+                                                        class='icon-twitter'></i> <span class='count'></span></a><a
+                                                    class='google-plus-share nectar-sharing-alt' href='#'
+                                                    title='Share this'> <i class='icon-google-plus'></i> <span
+                                                        class='count'> 0 </span></a><a
+                                                    class='pinterest-share nectar-sharing' href='#' title='Pin this'> <i
+                                                        class='icon-pinterest'></i> <span class='count'></span></a>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="after-product-summary-clear"></div>
+                <div class="woocommerce-tabs wc-tabs-wrapper full-width-tabs">
+                    <div class="full-width-content" style="border-top-color: transparent;">
+                        <div class="tab-container container">
+                            <style>
+                                .tabs .description_tab.active a:after {
+                                    background-color: transparent;
+                                }
+                            </style>
+                            <ul class="tabs" style="padding-left: 40%; padding-right: 40%;">
+                                <li class="description_tab">
+                                    <a href="#tab-description">Description</a>
+                                </li>
+                                {% assign tab_size = product.metafields.product_tab | size %}
+                                {% if tab_size > 0 %}
+                                    {% for tab in product.metafields.product_tab %}
+                                        <li class="{{ tab | first | handle }}_tab">
+                                            <a href="#tab-{{ tab | first | handle }}">{{ tab | first }}</a>
+                                        </li>
+                                    {% endfor %}
+                                {% endif %}
+                                <li class="reviews_tab">
+                                    <a href="#tab-reviews">Reviews</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="panel entry-content" id="tab-description">
+                        {{ product.description }}</div>
+                    {% assign tab_size = product.metafields.product_tab | size %}
+                    {% if tab_size > 0 %}
+
+                        {% for tab in product.metafields.product_tab %}
+                            <div class="panel entry-content" id="tab-{{ tab | first | handle }}">
+                                {{ tab | last }}
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                    <div class="panel entry-content" id="tab-reviews">
+                        <div id="reviews" class="woocommerce-Reviews">
+                            <div id="comments">
+                                <h2 class="woocommerce-Reviews-title">Reviews</h2>
+                                <div id="shopify-product-reviews"
+                                     data-id="{{ product.id }}">{{ product.metafields.spr.reviews }}</div>
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="clear"></div>
+                <section class="related products">
+                    {% include 'related-products' %}
+                </section>
+                <section class="up-sells upsells products">
+                    <h2>You may also like&hellip;</h2>
+                    <ul class="products">
+                        {% assign product_first = 0 %}
+                        {% for product in collections['all'].products limit: 3 %}
+                            {% if product.id == skip_product.id or skip == true %}
+                                {% assign product_found = true %}
+                            {% else %}
+                                {% if forloop.rindex0 == 0 and product_found == false and forloop.length != products.count and template != 'search' %}
+                                    {% assign skip = true %}
+                                {% else %}
+                                    {% assign product_first = product_first | plus:1 %}
+                                    <li class="text_on_hover product type-product status-publish has-post-thumbnail product_cat-{{ product.collections.first | handle }} {% if product_first == 1 %}first{% endif %} instock taxable shipping-taxable purchasable product-type-simple">
+                                        <a href="{{ product.url }}" class="woocommerce-LoopProduct-link">
+                                            <div class="product-wrap">
+                                                <img src="{{ product.featured_image | img_url:'grande' }}"
+                                                     class="attachment-shop_catalog size-shop_catalog wp-post-image"
+                                                     alt="{{ product.title }}" title="{{ product.title }}"/>
+                                                <div class="bg-overlay"></div>
+                                                <a href="{{ product.url }}" class="link-overlay"></a>
+                                                <div class="text-on-hover-wrap">
+                    <span class="price">
+                      {% if product.price_varies %}
+                          <span class="woocommerce-Price-amount amount">{{ product.price_min | money }}</span>
+                      -
+                      <span class="woocommerce-Price-amount amount">{{ product.price_max | money }}</span>
+                      {% else %}
+                          <span class="woocommerce-Price-amount amount">{{ product.price | money }}</span>
+                      {% endif %}
+                    </span>
+                                                    <div class="categories"><a href="{{ product.url }}"
+                                                                               rel="tag">{{ product.collections.first.title }}</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <a href="{{ product.url }}"><h2
+                                                        class="woocommerce-loop-product__title">{{ product.title }}</h2>
+                                            </a>
+                                            <a rel="nofollow" data-title="{{ product.title }}" data-quantity="1"
+                                               class="button product_type_simple add_to_cart_button ajax_add_to_cart add_to_cart_button"
+                                               data-id="{{ product.selected_or_first_available_variant.id }}">Add to
+                                                cart</a>
+                                        </a>
+                                    </li>
+                                {% endif %}
+                            {% endif %}
+                        {% endfor %}
+                    </ul>
+                </section>
+                <meta itemprop="url" content="{{ product.url }}"/>
+            </div>
+        </div>
+    </div>
+</div>

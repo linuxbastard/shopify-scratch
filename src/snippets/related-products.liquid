@@ -1,0 +1,69 @@
+{% if collection and collection.all_products_count > 1 %}
+  {% assign col = collection.handle %}
+{% else %}
+  {% assign col = product.collections.last.handle %}
+{% endif %}
+
+{% for tag in product.tags %}
+  {% if tag contains 'meta-related-collection-' %}
+    {% assign related_collection_handle = tag | remove: 'meta-related-collection-' %}
+    {% if collections[related_collection_handle].all_products_count > 0 %}
+      {% assign col = related_collection_handle %}
+      {% assign collection = collections[col] %}
+    {% endif %}
+  {% endif %}
+{% endfor %}
+
+{% if col %}
+  {% if collections[col].all_products_count != 1 or collections[col].products.first.id != product.id %}
+    {% assign skip_product = product %}
+    {% assign products = collections[col].products %}
+    
+      <h2>Related products</h2>
+   
+
+    {% assign limit = 4 %}
+      {% if col and collections[col].all_products_count > 0 %}
+        
+          <ul class="products">
+            {% assign product_found = false %}
+			{% assign skip = false %}
+            {% for product in products limit: limit %}
+            {% if product.id == skip_product.id or skip == true %}
+              {% assign product_found = true %}
+            {% else %}
+              {% if forloop.rindex0 == 0 and product_found == false and forloop.length != products.count and template != 'search' %}
+                {% assign skip = true %}
+              {% else %}
+            		<li class="text_on_hover product type-product status-publish has-post-thumbnail product_cat-{{product.collections.first | handle}} {% cycle 'first','','', 'last' %} instock taxable shipping-taxable purchasable product-type-simple">
+<a href="{{product.url}}" class="woocommerce-LoopProduct-link">
+<div class="product-wrap">
+<img src="{{ product.featured_image | img_url:'grande' }}" class="attachment-shop_catalog size-shop_catalog wp-post-image" alt="{{product.title}}" title="{{product.title}}"/>
+<div class="bg-overlay"></div>
+<a href="{{product.url}}" class="link-overlay"></a>
+<div class="text-on-hover-wrap">
+<span class="price">
+  {% if product.price_varies %}
+  <span class="woocommerce-Price-amount amount">{{ product.price_min | money }}</span>
+  -
+  <span class="woocommerce-Price-amount amount">{{ product.price_max | money }}</span>
+  {% else %}
+  <span class="woocommerce-Price-amount amount">{{ product.price | money }}</span>
+  {% endif %}
+</span>
+<div class="categories"><a href="{{product.url}}" rel="tag">{{product.collections.first.title}}</a></div> </div>
+</div>
+<a href="{{product.url}}"><h2 class="woocommerce-loop-product__title">{{product.title}}</h2></a>
+<a rel="nofollow" data-quantity="1" class="button product_type_simple add_to_cart_button ajax_add_to_cart add_to_cart_button" data-id="{{ product.selected_or_first_available_variant.id }}">Add to cart</a>
+</a>
+</li>
+              {% endif %}
+            {% endif %}
+            {% endfor %}
+            
+          </ul>
+        
+      {% endif %}
+    
+  {% endif %}
+{% endif %}

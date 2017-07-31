@@ -1,0 +1,134 @@
+<a name="pagecontent" id="pagecontent"></a>
+<div class="container-wrap">
+<div class="container main-content">
+<div class="row">
+<div class="woocommerce">
+<div class="u-columns col2-set" id="login_form">
+<div class="u-column1 col-1">
+<h2>Login</h2>
+{% form 'customer_login' %}
+      {{ form.errors | default_errors }}
+<p class="woocommerce-FormRow woocommerce-FormRow--wide form-row form-row-wide">
+<label for="username">Username or email address <span class="required">*</span></label>
+<input type="text" name="customer[email]" class="input-text" id="username" value=""/>
+</p>
+<p class="woocommerce-FormRow woocommerce-FormRow--wide form-row form-row-wide">
+<label for="password">Password <span class="required">*</span></label>
+<input type="password" name="customer[password]" class="input-text" id="password"/>
+</p>
+<p class="form-row login-btn-row">
+
+<input type="submit" class="woocommerce-Button button" name="login" value="Login">
+
+</p>
+<p class="woocommerce-LostPassword lost_password">
+<a href="/account/login#recover">Lost your password?</a>
+</p>
+{% endform %}
+</div>
+<div class="u-column2 col-2">
+<h2>Register</h2>
+{% form 'create_customer' %}
+  {{ form.errors | default_errors }}
+<p class="woocommerce-FormRow woocommerce-FormRow--wide form-row form-row-wide">
+<label for="reg_fname">First name <span class="required">*</span></label>
+<input type="text" name="customer[first_name]" class="input-text" id="reg_fname" value=""/>
+</p>
+<p class="woocommerce-FormRow woocommerce-FormRow--wide form-row form-row-wide">
+<label for="reg_lname">Last name <span class="required">*</span></label>
+<input type="password" name="customer[last_name]" class="input-text" id="reg_lname"/>
+</p>
+<p class="woocommerce-FormRow woocommerce-FormRow--wide form-row form-row-wide">
+<label for="reg_email">Email address <span class="required">*</span></label>
+<input type="email" name="customer[email]" class="input-text" id="reg_email" value=""/>
+</p>
+<p class="woocommerce-FormRow woocommerce-FormRow--wide form-row form-row-wide">
+<label for="reg_password">Password <span class="required">*</span></label>
+<input type="password" name="customer[password]" class="input-text" id="reg_password"/>
+</p>
+ 
+ 
+<style type="text/css">.wp-social-login-connect-with{}.wp-social-login-provider-list{}.wp-social-login-provider-list a{}.wp-social-login-provider-list img{}.wsl_connect_with_provider{}</style>
+
+ 
+<p class="woocomerce-FormRow form-row">
+  <input type="submit" class="woocommerce-Button button" name="register" value="Register"/>
+</p>
+{% endform %}
+</div>
+</div>
+<div class="" id="recover-password" style="display:none;">
+{% form 'recover_customer_password' %}
+          {{ form.errors | default_errors }}
+
+          {% if form.posted_successfully? %}
+            {% assign reset_success = true %}
+          {% endif %}
+<p>Lost your password? Please enter your username or email address. You will receive a link to create a new password via email.</p>
+<p class="woocommerce-form-row woocommerce-form-row--first form-row form-row-first">
+<label for="user_login">Username or email</label>
+<input type="email" name="email" class="input-text" id="user_login">
+</p>
+<div class="clear"></div>
+<p class="woocommerce-form-row form-row">
+<input type="submit" class="woocommerce-Button button" value="Reset password">
+</p>
+<input type="hidden" id="_wpnonce" name="_wpnonce" value="29f6a0abfb"><input type="hidden" name="_wp_http_referer" value="/my-account/lost-password/">
+{% endform %}
+</div>
+</div>
+</div> 
+</div> 
+</div> 
+   
+
+<script type="text/javascript">
+  function showRecoverPasswordForm() {
+    document.getElementById('recover-password').style.display = 'block';
+    document.getElementById('login_form').style.display='none';
+    return false;
+  }
+
+  function hideRecoverPasswordForm() {
+    document.getElementById('recover-password').style.display = 'none';
+    document.getElementById('login_form').style.display = 'block';
+    return false;
+  }
+  jQuery('.lost_password a').click(function(){
+  window.location.reload();
+  });
+  if (window.location.hash == '#recover') { showRecoverPasswordForm() }
+
+  // reset_success is only true when the reset form is
+  {% if reset_success %}
+    showRecoverPasswordForm();
+  {% endif %}
+</script>
+<style>
+  @media only screen and (min-width: 1000px){
+.container, .woocommerce-tabs .full-width-content .tab-container, .nectar-recent-posts-slider .flickity-page-dots {
+    max-width: 1425px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 90px;
+}
+  }
+  .woocommerce form .form-row input.input-text, .woocommerce form .form-row textarea, .woocommerce form .form-row select {
+    display: block;
+    width: 100%;
+    height: 34px;
+    padding: 6px 12px!important;
+    font-size: 14px!important;
+    line-height: 1.42857143;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+    -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+}
+</style>

@@ -1,0 +1,47 @@
+<div class="title-wrapper">
+  {% if section.settings.generic_page_title != blank %}
+    <h1>{{ section.settings.generic_page_title }}</h1>
+  {% endif %}
+  {% if section.settings.page_title_subtext != blank %}
+    <p class="title-subtext">
+      {% capture no_p_tags %}
+      {{ section.settings.page_title_subtext }}
+      {% endcapture %}
+      {{ no_p_tags  | remove: '<p>'  | remove: '</p>' }}
+    </p>
+  {% endif %}
+</div>
+{% schema %}
+
+{
+  "name": "Page Title",
+  "class": "page-title-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "generic_page_title",
+      "label": "Heading",
+      "default": "Page Heading"
+    },
+    {
+      "type": "richtext",
+      "id": "page_title_subtext",
+      "label": "Subheading",
+      "default": "<p>Some sub-heading text here...</p>"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Upload banner background image",
+      "info":"1600 x 300px recommended"
+    }
+  ],
+  "presets": [{
+    "name": "Page Title",
+    "category": "Social",
+    "settings": {
+    }
+  }]
+}
+
+{% endschema %}

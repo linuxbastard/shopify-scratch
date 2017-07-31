@@ -1,0 +1,92 @@
+{% comment %}
+  The contents of the search.liquid template can be found in /sections/search-template.liquid
+{% endcomment %}
+{% paginate search.results by 12 %}
+<script>
+jQuery(document).ready(function($){
+	
+	var $searchContainer = $('#search-results');
+	
+	$(window).load(function(){
+		
+		$searchContainer.isotope({
+		   itemSelector: '.result',
+		   layoutMode: 'packery',
+		   packery: { columnWidth: $('#search-results').width() / 3 }
+		});
+		
+		$searchContainer.css('visibility','visible');
+				
+	});
+	
+	$(window).resize(function(){
+	   $searchContainer.isotope({
+	   	  layoutMode: 'packery',
+	      packery: { columnWidth: $('#search-results').width() / 3}
+	   });
+	});
+
+	
+});
+</script>
+<div class="container-wrap">
+<div class="container main-content">
+<div class="row">
+<div class="col span_12">
+<div class="col span_12 section-title">
+<h1>Results For<span>"{{ search.terms }}"</span></h1>
+</div>
+</div>
+</div>
+<div class="divider"></div>
+<div class="row">
+<div class="col span_9">
+<div id="search-results">
+  {% if search.performed %}
+    {% if search.results == empty %}
+		<p>No results found</p>
+  	{% else %}
+  	{% for item in search.results %}
+  		<article class="result">
+          <div class="inner-wrap">
+          <span class="bottom-line"></span>
+          {% if item.object_type == 'article' %}
+          <h2 class="title"><a href="{{item.url}}">{{item.title}}</a> <span>Blog</span></h2>
+          {% elsif item.object_type == 'page' %}
+          <h2 class="title"><a href="{{item.url}}">{{item.title}}</a> <span>Page</span></h2> 
+          {% else %}
+            {% if item.featured_image %}
+              <a href="{{item.url}}">
+              <img src="{{ item.featured_image | img_url: 'medium' }}" alt="{{item.title}}" />
+              </a> 
+            {% endif %}
+            <h2 class="title"><a href="{{item.url}}">{{item.title}}</a> 
+              <span>Product</span>
+            </h2>
+          {% endif %}
+          </div>
+          </article> 
+  	{% endfor %}
+  	{% endif %}
+  {% endif %}
+</div> 
+{% if paginate.pages > 1 %}
+<div id="pagination">
+<div class="prev"></div>
+{% if paginate.previous.is_link %}
+    <a href="{{ paginate.previous.url }}">« Previous Entries</a>
+{% endif %}
+<div class="next">
+{% if paginate.next.is_link %}
+    <a href="{{ paginate.next.url }}">Next Entries »</a>
+{% endif %}
+</div>
+</div>
+{% endif %}
+</div> 
+<div id="sidebar" class="col span_3 col_last">
+</div> 
+</div> 
+</div> 
+</div> 
+{% endpaginate %}

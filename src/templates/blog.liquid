@@ -1,0 +1,109 @@
+<div id="page-header-wrap" data-animate-in-effect="none" data-midnight="light" class="" style="height: 650px;">
+    <div class="" data-animate-in-effect="none" id="page-header-bg" data-midnight="light" data-text-effect="none"
+         data-bg-pos="center" data-alignment="center" data-alignment-v="middle" data-parallax="0" data-height="650"
+         style="background-color: #00A791;  height: 470px;">
+        <div class="page-header-bg-image"
+             style="background-image: url({{ 'lyfe-fuel-blog-header.jpg' | asset_url }});"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col span_6">
+                    <div class="inner-wrap" style="text-align: left;">
+                        <h1 class="hbannet" style="color:white !important; margin-bottom:30px;">THE LYFEFUEL BLOG</h1>
+                        <p style="text-align: center; font-size: 24px;">TIPS, RECIPES, AND STORIES TO ENHANCE YOUR
+                            LYFESTYLE</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% paginate blog.articles by 3 %}
+<div class="container-wrap">
+    <div class="container main-content">
+        <div class="row">
+            <div id="post-area" class="col span_12 infinite_scroll">
+                <div class="posts-container" data-load-animation="none">
+                    <div class="row">
+                        {% for article in blog.articles %}
+                            <article
+                                    class="col span_4 regular post type-post status-publish format-standard has-post-thumbnail hentry"
+                                    style="margin-right: 1%;">
+                                <div class="inner-wrap animated">
+                                    <div class="post-content" style="padding-left: 0;">
+                                        <div class="content-inner">
+                                            <a href="{{ article.url }}"><span class="post-featured-img">
+  <img src="{{ article.image.src | img_url: 'original' }}" class="attachment-full size-full wp-post-image" alt=""
+       title=""/></span></a>
+                                            <div class="article-content-wrap">
+                                                <div class="post-header">
+                                                    <h2 class="title">
+                                                        <a href="{{ article.url }}"
+                                                           style="color: #000 !important; text-transform: uppercase;"> {{ article.title }} </a>
+                                                    </h2>
+                                                    <span class="meta-author"
+                                                          style="color: #000;"><span>By</span> {{ article.author }}</span>
+                                                </div>
+                                                <div class="excerpt"
+                                                     style="color: #000;">{{ article.content | truncatewords:50 }}</div>
+                                                <a class="more-link" href="{{ article.url }}"
+                                                   style="text-transform: uppercase;"><span
+                                                            class="continue-reading"
+                                                            style="background-color: transparent; color: #000; border: 1px solid #000;">Read More</span></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </article>
+                        {% endfor %}
+                    </div>
+                </div>
+                {% if paginate.pages > 1 %}
+                    <div id="pagination" data-is-text="All items loaded">
+                        <div class="prev"></div>
+                        {% if paginate.previous.is_link %}
+                            <a href="{{ paginate.previous.url }}">Â« Previous Entries</a>
+                        {% endif %}
+                        <div class="next">
+                            {% if paginate.next.is_link %}
+                                <a href="{{ paginate.next.url }}">Next Entries Â»</a>
+                            {% endif %}
+                        </div>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endpaginate %}
+<div id="newsletter-row" class="container-wrap ambassador-page"
+     style="background-image: url({{ 'amb-email-bg.jpg' | 'asset_url' }});">
+    <div class="container main-content">
+        <div class="row">
+            <div id="email-capture-row" data-midnight="dark" data-bg-mobile-hidden=""
+                 class="wpb_row vc_row-fluid vc_row standard_section " style="padding-top: 0px; padding-bottom: 0px; ">
+                <div class="row-bg-wrap">
+                    <div class="row-bg    " style="" data-color_overlay="" data-color_overlay_2=""
+                         data-gradient_direction="" data-overlay_strength="0.3" data-enable_gradient="false">
+                    </div>
+                    <div class="col span_12 dark left">
+                        <div class="vc_col-sm-12 wpb_column column_container vc_column_container col no-extra-padding"
+                             data-bg-cover="" data-padding-pos="all" data-has-bg-color="false" data-bg-color=""
+                             data-bg-opacity="1" data-hover-bg="" data-hover-bg-opacity="1" data-animation=""
+                             data-delay="0">
+                            <div class="vc_column-inner">
+                                <div class="wpb_wrapper">
+                                    <div class="wpb_text_column wpb_content_element email-list-block">
+                                        <div class="wpb_wrapper">
+                                            <!-- Newsletter Section -->
+                                            {% section 'generic-newsletter' %}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

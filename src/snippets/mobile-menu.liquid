@@ -1,0 +1,34 @@
+{% for link in linklists[mobile-menu].links %}
+  {% if linklists[link.handle] == empty %}
+    <li class="menu-item menu-item-type-post_type menu-item-object-page{% if link.active %} current_page_item{% endif %}" ><a href="{{ link.url }}">{{ link.title }}</a></li>
+  {% else %}
+    <li class="menu-item menu-item-type-post_type menu-item-object-page {% if link.active %} current_page_item{% endif %} {% if linklists[link.handle] != empty %}menu-item-has-children{% endif %}"><a class="sf-with-ul" data-no-instant href="{{ link.url }}">{{ link.title }}</a>
+      <ul class="sub-menu">
+        {% for link in linklists[link.handle].links %}
+          {% if linklists[link.handle] == empty %}
+            <li class="menu-item menu-item-type-post_type menu-item-object-page {% if link.active %}current-menu-item current_page_item{% endif %}"><a href="{{ link.url }}">{{ link.title }}</a></li>
+          {% else %}
+          <li class="menu-item menu-item-type-post_type menu-item-object-page {% if link.active %}current-menu-item current_page_item{% endif %}"><a data-no-instant href="{{ link.url }}">{{ link.title }}</a>
+            <ul>
+              {% for link in linklists[link.handle].links %}
+                <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+              {% endfor %}
+            </ul>
+          </li>
+          {% endif %}
+        {% endfor %}
+      </ul>
+    </li>
+  {% endif %}
+
+{% endfor %}
+<!-- <li class="menu-item menu-item-type-post_type menu-item-object-page account_link" ><a href="/account">My account</a></li> -->
+<script>
+  jQuery('.sub-menu .current_page_item').each(function(){
+  	jQuery(this).parents('li.menu-item').addClass('current_page_item');
+  });
+  var location_href = window.location.href;
+  if(location_href.indexOf('account') > -1){
+  	jQuery('.account_link').addClass('current_page_item');
+  }
+</script>

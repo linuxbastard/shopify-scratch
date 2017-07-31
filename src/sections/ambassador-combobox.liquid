@@ -1,0 +1,68 @@
+<div class="combobox {{ section.settings.combobox_class }}">
+    <div class="bg-overlay"></div>
+          {% if section.settings.combobox_title != blank %}
+            <h4>{{ section.settings.combobox_title }}</h4>
+          {% endif %}
+          {% if section.settings.btn-link != blank %}
+            <a class="btn combobox-btn" href="{{ section.settings.btn-link }}" title="{{ section.settings.btn-tooltip }}">
+              {{ section.settings.btn-text }}
+            </a>
+          {% endif %}
+          <div class="img-container">
+            <img src="{{ section.settings.image | img_url: '300x463' }}" alt="{{ section.settings.combobox_title }}" />
+          </div>
+</div>
+
+{% schema %}
+
+{
+  "name": "Image Button Combobox",
+  "class": "img-btn-combo",
+  "settings": [
+    {
+      "type": "text",
+      "id": "combobox_title",
+      "label": "Combobox Main Text",
+      "default": "Something about the combobox here..."
+    },
+    {
+      "type": "text",
+      "id": "combobox_class",
+      "label": "Class for easy styling",
+      "default": "combobox1"
+    },
+
+    {
+      "type": "text",
+      "id": "btn-link",
+      "label": "Combobox buttton link",
+      "default": "http://..."
+    },
+    {
+      "type": "text",
+      "id": "btn-tooltip",
+      "label": "Combobox buttton tooltip",
+      "default": "Click to learn more"
+    },
+    {
+      "type": "text",
+      "id": "btn-text",
+      "label": "Combobox buttton text",
+      "default": "Learn More"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Upload background image",
+      "info":"300 x 463px recommended"
+    }
+  ],
+  "presets": [{
+    "name": "Image Button Combobox",
+    "category": "Image with text overlay",
+    "settings": {
+    }
+  }]
+}
+
+{% endschema %}

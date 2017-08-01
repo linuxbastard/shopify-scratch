@@ -1,0 +1,48 @@
+<div class="assert-icons-container">
+    <div class="container-bg"></div>
+    <div class="icons-row-container flex-container">
+        <div class="assert-container">
+            <div class="assert-icon">
+                <div class="assert-icon-container">{{ 'soy-dairy-free.png' | asset_url | img_tag: 'Soy & Dairy Free' }}</div>
+            <p class="assert-label medium-breaking">Soy & Dairy <br>Free</p>
+            </div>
+        </div>
+        <div class="assert-container">
+            <div class="assert-icon">
+                <div class="assert-icon-container">{{ 'no-artificial.png' | asset_url | img_tag: 'Nothing Artificial' }}            </div>
+            <p class="assert-label medium-breaking">Nothing <br>Artificial</p>
+            </div>
+        </div>
+        <div class="assert-container">
+            <div class="assert-icon">
+                <div class="assert-icon-container">{{ 'plant-based.png' | asset_url | img_tag: 'Plant Based' }}</div>
+                <p class="assert-label medium-breaking">Plant <br>Based</p>
+            </div>
+        </div>
+        <div class="assert-container">
+            <div class="assert-icon">
+                <div class="assert-icon-container">{{ 'bio-available.png' | asset_url | img_tag: 'Bio Available' }}</div>
+                <p class="assert-label medium-breaking">Bio <br>Available</p>
+            </div>
+        </div>
+        <div class="assert-container">
+            <div class="assert-icon">
+                <div class="assert-icon-container">{{ 'non-gmo.png' | asset_url | img_tag: 'Non-GMO' }}</div>
+                <p class="assert-label medium-breaking">Non <br>GMO</p>
+            </div>
+        </div>
+        <div class="assert-container">
+            <div class="assert-icon">
+                <div class="assert-icon-container">{{ 'made-in-usa.png' | asset_url | img_tag: 'Made in the USA' }}</div>
+                <p class="assert-label medium-breaking">Made in <br>the USA</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% schema %}
+
+{
+"name": "Page Header Icons",
+"class": "page-header-icons"
+}
+{% endschema %}

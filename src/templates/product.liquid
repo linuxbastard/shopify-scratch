@@ -1,4 +1,4 @@
-<div class="container-wrap">
+<div class="container-wrap" id="test-id">
     <div class="container main-content">
         <div class="row">
             <div itemscope data-project-style="text_on_hover" itemtype="http://schema.org/Product"
@@ -28,10 +28,10 @@
                             </div>
                         </div>
                     </div>
-                    <div class="iosSlider product-thumbs" style="min-height:130px!important">
+                    <div class="iosSlider product-thumbs">
                         <div class="slider">
                             {% for image in product.images %}
-                                <div class="thumb {% if forloop.first %}active{% endif %}" style="height:130px">
+                                <div class="thumb {% if forloop.first %}active{% endif %}">
                                     <div class="thumb-inner"><img src="{{ image.src | img_url:'medium' }}"
                                                                   class="attachment-shop_thumbnail size-shop_thumbnail wp-post-image"
                                                                   alt=""/></div>
@@ -58,7 +58,7 @@
                         <div class="short-description">{{ product.description | truncatewords: 35 }}</div>
                         <form class="cart" action="/cart/add" method="post" enctype='multipart/form-data'>
                             <p class="price"
-                               style="float: left; line-height: 15px !important; margin-right: 20px;"><span
+                            ><span
                                         class="woocommerce-Price-amount amount">{{ product.price | money }}</span></p>
                             <div class="quantity">
                                 <input type="number" class="input-text qty text" step="1" min="1" max="558"
@@ -106,15 +106,10 @@
                     </div>
                 </div>
                 <div class="after-product-summary-clear"></div>
-                <div class="woocommerce-tabs wc-tabs-wrapper full-width-tabs">
-                    <div class="full-width-content" style="border-top-color: transparent;">
+                <div class="woocommerce-tabs wc-tabs-wrapper full-width-tabs product-tabs">
+                    <div class="full-width-content">
                         <div class="tab-container container">
-                            <style>
-                                .tabs .description_tab.active a:after {
-                                    background-color: transparent;
-                                }
-                            </style>
-                            <ul class="tabs" style="padding-left: 40%; padding-right: 40%;">
+                            <ul class="tabs">
                                 <li class="description_tab">
                                     <a href="#tab-description">Description</a>
                                 </li>

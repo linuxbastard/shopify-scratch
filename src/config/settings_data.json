@@ -2967,7 +2967,7 @@
       "header": {
         "type": "header",
         "settings": {
-          "fixed_header": false,
+          "fixed_header": true,
           "search_enabled": false,
           "promo_text": "",
           "social_icons_header": false,
@@ -3298,71 +3298,6 @@
           "text_alignment": "center",
           "button_label": "",
           "button_link": ""
-        }
-      },
-      "page-mello-sidebar-template": {
-        "type": "page-mello-sidebar-template",
-        "settings": {
-          "toggle": false
-        }
-      },
-      "page-title": {
-        "type": "page-title",
-        "settings": {
-          "generic_page_title": "Fernando Mello",
-          "page_title_subtext": "<p>Certified Nutritionist &amp; Health Coach | <a href=\"http:\/\/www.fernandamello.org\" title=\"http:\/\/www.fernandamello.org\">www.fernandamello.org<\/a><\/p>",
-          "image": ""
-        }
-      },
-      "generic-newsletter": {
-        "type": "generic-newsletter",
-        "settings": {
-          "newsletter_title": "Want More Lyfe Stories, Tips, and Recipes?",
-          "newsletter_text": "<p>Sign Up For Our Newsletter to Keep Yourself Updated (Get Exclusive Promos, Too!)<\/p>",
-          "display_first_name": false,
-          "display_last_name": false,
-          "newsletter_section_text_align": "center",
-          "image": ""
-        }
-      },
-      "ambassador-sidebar": {
-        "type": "ambassador-sidebar",
-        "settings": {
-          "combobox_title": "Something about the combobox here...",
-          "btn-link": "http:\/\/...",
-          "btn-tooltip": "Click to learn more",
-          "btn-text": "Learn More",
-          "image": "shopify:\/\/shop_images\/amb-side-img1.jpg"
-        }
-      },
-      "ambassador-combobox": {
-        "type": "ambassador-combobox",
-        "settings": {
-          "combobox_title": "Fuel Your Life With Plant-based Protein",
-          "combobox_class": "combobox1",
-          "btn-link": "http:\/\/...",
-          "btn-tooltip": "Click to learn more",
-          "btn-text": "Learn More",
-          "image": "shopify:\/\/shop_images\/amb-side-img1_686bd7ab-9802-4578-9f0a-c1b98ec20f73.jpg"
-        }
-      },
-      "ambassador-combobox2": {
-        "type": "ambassador-combobox2",
-        "settings": {
-          "combobox_title": "Want To Be An Ambassador of LyfeFuel Too?",
-          "combobox_class": "combobox2",
-          "btn-link": "http:\/\/...",
-          "btn-tooltip": "Click to learn more",
-          "btn-text": "Become an Ambassador",
-          "image": "shopify:\/\/shop_images\/amb-side-img2.jpg"
-        }
-      },
-      "page-featured-image": {
-        "type": "page-featured-image",
-        "settings": {
-          "toggle": true,
-          "feat_img_alt": "LyfeFuel Ambassador Fernanda Mello profile image",
-          "image": "shopify:\/\/shop_images\/fernanda-mello.jpg"
         }
       }
     },
